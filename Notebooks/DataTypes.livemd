@@ -1,0 +1,263 @@
+# Data Types
+
+## Atom
+
+```elixir
+:error
+```
+
+```elixir
+{:error, reason} = {:error, "file not found"}
+reason
+```
+
+```elixir
+{:ok, msg} = {:ok, "status 200 ok"}
+msg
+```
+
+## Strings
+
+```elixir
+name = "Octallium"
+name
+```
+
+```elixir
+is_binary(name)
+```
+
+```elixir
+msg = "Hello " <> name
+msg
+```
+
+```elixir
+"Hello " <> name = msg
+name
+```
+
+```elixir
+<<head, rest::binary>> = name
+head
+```
+
+```elixir
+head == ?O
+```
+
+```elixir
+<<"O", rest::binary>> = name
+rest
+```
+
+```elixir
+<<"Oc", rest::binary>> = name
+rest
+```
+
+```elixir
+<<head::binary-size(2), rest::binary>> = name
+head
+```
+
+## Charlist
+
+```elixir
+chars = 'Octallium'
+```
+
+## Processes
+
+```elixir
+my_pid = self()
+my_pid
+```
+
+## Lists
+
+```elixir
+# Lists in elixir are singly linked lists.
+
+list = ["a", "b", "c"]
+```
+
+```elixir
+# we have linked lists in elixir because they are recursive in nature.
+# we can work with them with recusrsive functions or some modules.
+
+Enum.at(list, 0)
+```
+
+```elixir
+[first, second, third] = list
+```
+
+```elixir
+[_, _, third] = ["a", "b", "c"]
+third
+```
+
+```elixir
+[ h | t ] = list
+h
+```
+
+## Tuple
+
+```elixir
+{ a,b } = { 1,2 }
+a
+```
+
+```elixir
+{:reply, msg, state} = {:reply, "Octallium found!", ["Octallium", "Louis", "Chiko"]}
+state
+```
+
+## Keyword List
+
+```elixir
+data = [a: 1, b: 2]
+```
+
+```elixir
+[{:a, a}] = [a: 1]
+```
+
+## Maps
+
+```elixir
+my_map = %{a: 1, b: 2, c: 3}
+my_map
+```
+
+```elixir
+%{a: first, b: second, c: third} = my_map
+first
+```
+
+```elixir
+%{b: second} = my_map
+second
+```
+
+```elixir
+my_map.a
+```
+
+```elixir
+map2 = %{"a" => 1, "b" => 2, "c" => 3}
+```
+
+```elixir
+%{"c" => c} = map2
+c
+```
+
+```elixir
+map2 = %{map2 | "c" => 4}
+```
+
+```elixir
+my_map = %{my_map | c: 4}
+```
+
+## Struct
+
+```elixir
+defmodule User do
+  defstruct username: "", email: "", age: nil
+end
+```
+
+```elixir
+user1 = %User{username: "Octallium", age: 14, email: "octobot@sample.com"}
+```
+
+```elixir
+%{username: username} = user1
+username
+```
+
+```elixir
+user1 = %{user1 | age: 21}
+```
+
+## Control Flow
+
+Case
+
+```elixir
+list = [1, 2, 3]
+```
+
+```elixir
+case Enum.at(list, 2) do
+  1 -> "This won't print"
+  3 -> "3 is a match!"
+  _ -> "Catch all"
+end
+```
+
+```elixir
+defmodule Post do
+  defstruct(
+    id: nil,
+    title: "",
+    description: "",
+    author: ""
+  )
+end
+```
+
+```elixir
+post1 = %Post{id: 1, title: "Title No 1", author: "Julius Ceaser"}
+```
+
+```elixir
+case post1 do
+  %{author: "Ocatllium"} -> "Got a post from Ocatllium"
+  %{author: "Arnold"} -> "Got a post from Arnold"
+  _ -> "Got a post from #{post1.author}"
+end
+```
+
+```elixir
+post1 = %{post1 | author: "Anil Kulkarni"}
+```
+
+```elixir
+case post1 do
+  %{author: "Ocatllium"} -> "Got a post from Ocatllium"
+  %{author: "Arnold"} -> "Got a post from Arnold"
+  _ -> "Got a post from #{post1.author}"
+end
+```
+
+## Cond
+
+```elixir
+cond do
+  post1.author == "Ocatllium" -> "Editing a post from Octallium"
+  post1.author == "Arnold" -> "Editing a post from Arnold"
+  true -> "This is a catch all"
+end
+```
+
+```elixir
+cond do
+  hd(list) == 1 -> "Got a 1"
+  true -> "Head is #{hd(list)}"
+end
+```
+
+## If/Else
+
+```elixir
+if true do
+  "This will work"
+else
+  "Else this will work"
+end
+```
