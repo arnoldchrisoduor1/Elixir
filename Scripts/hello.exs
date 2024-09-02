@@ -1,7 +1,5 @@
 defmodule Hello do
-  def world do
-    IO.puts("Hello Elixir")
+  def world(name) do
+    IO.puts("Hello #{name}")
   end
 end
-
-Hello.world()
