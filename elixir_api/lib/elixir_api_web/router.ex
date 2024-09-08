@@ -12,6 +12,12 @@ defmodule ElixirApiWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+  end
+
+  pipeline :auth do
+    plug ElixirApiWeb.Auth.Pipeline
+    plug ElixirApiWeb.Auth.SetAccount
   end
 
   scope "/api", ElixirApiWeb do
@@ -19,5 +25,10 @@ defmodule ElixirApiWeb.Router do
     get "/", DefaultController, :index
     post "/accounts/create", AccountController, :create # endpoint to create an account
     post "/accounts/sign_in", AccountController, :sign_in
+  end
+
+  scope "/api", ElixirApiWeb do
+    pipe_through [:api, :auth]
+    get "/accounts/by_id/:id", AccountController, :show
   end
 end

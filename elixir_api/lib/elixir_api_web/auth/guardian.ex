@@ -16,7 +16,7 @@ defmodule ElixirApiWeb.Auth.Guardian do
 
   def resource_from_claims(%{"sub" => id}) do
     # Function to takes claims(JWT claims) and extracts the id from the "sub" field.
-    case Acccounts.get_account!(id) do # fetching the account associated with the id.
+    case Accounts.get_account!(id) do # fetching the account associated with the id.
       nil -> {:error, :not_found}
       resource -> {:ok, resource}
     end
