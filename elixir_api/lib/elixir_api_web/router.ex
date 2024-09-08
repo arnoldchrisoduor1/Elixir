@@ -30,5 +30,6 @@ defmodule ElixirApiWeb.Router do
   scope "/api", ElixirApiWeb do
     pipe_through [:api, :auth]
     get "/accounts/by_id/:id", AccountController, :show
+    post "/accounts/update", AccountController, :update
   end
 end
