@@ -22,4 +22,13 @@ defmodule ElixirApiWeb.AccountJSON do
       hash_password: account.hash_password
     }
   end
+
+  # Response after creating an account.
+  def render("account_token.json", %{account: account, token: token}) do
+    %{
+      id: account.id,
+      email: account.email,
+      token: token
+    }
+  end
 end
