@@ -61,7 +61,7 @@ defmodule ElixirApiWeb.AccountController do
     conn
     |> Plug.Conn.clear_session()
     |> put_status(:ok)
-    |> render("account_token.json", %{account: account, token: nil})
+    |> render("full_account_token.json", %{account: account, token: nil})
   end
 
   def show(conn, %{"id" => id}) do
