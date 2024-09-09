@@ -1,5 +1,6 @@
 defmodule ElixirApiWeb.AccountJSON do
   alias ElixirApi.Accounts.Account
+  alias ElixirApiWeb.{AccountView, UserView}
 
   @doc """
   Renders a list of accounts.
@@ -30,5 +31,14 @@ defmodule ElixirApiWeb.AccountJSON do
       email: account.email,
       token: token
     }
+
+    def render("full_account.json", %{account: account}) do
+      %{
+        id: account.id,
+        email: account.email,
+        user: render_one(account.user, UserView, "user.json")
+      }
+    end
+
   end
 end
